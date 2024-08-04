@@ -1,20 +1,22 @@
 const express = require('express');
 const { createTodo, updateTodo } = require('./types');
 const { todo } = require('./db');
+const cors = require('cors');
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 const server = app.listen("3000", ()=>{
     console.log("Server is  running on http://localhost:3000")
 })
 app.post("/todo", async function(req,res){
-    const creatyePayload = req.body;
-    const parsedPayload = createTodo.safeParse(creatyePayload);
+    const createPayload = req.body;
+    const parsedPayload = createTodo.safeParse(createPayload);
     if(!parsedPayload.success){
         res.status(411).json({
             msg : "Wrong inputs!"
         });
+        console.log("Failed")
         return;
     }
     
