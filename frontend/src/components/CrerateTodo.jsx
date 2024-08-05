@@ -19,11 +19,11 @@ export function CreateTodo(){
                 fetch("http://localhost:3000/todo", {
                     method: "POST",
                     body: JSON.stringify({
-                        title: title,
-                        description: description
+                        "title": title,
+                        "description": description
                     }),
                     headers: {
-                        "contentType": "application/json"
+                        "content-Type": "application/json"
                     }
                 }).then(async function(res){
                     const json = res.json();

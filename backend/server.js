@@ -22,8 +22,8 @@ app.post("/todo", async function(req,res){
     
     //Add to mongodb
     await todo.create({
-        title : creatyePayload.title,
-        description : creatyePayload.description,
+        title : createPayload.title,
+        description : createPayload.description,
         completed: false
 
     })
