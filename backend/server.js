@@ -1,6 +1,6 @@
 const express = require('express');
 const { createTodo, updateTodo } = require('./types');
-const { todo } = require('./db');
+const { Todo } = require('./db');
 const cors = require('cors');
 const app = express();
 app.use(cors());
@@ -21,7 +21,8 @@ app.post("/todo", async function(req,res){
     }
     
     //Add to mongodb
-    await todo.create({
+    console.log("trying to put data in db")
+    await Todo.create({
         title : createPayload.title,
         description : createPayload.description,
         completed: false
@@ -34,7 +35,7 @@ app.post("/todo", async function(req,res){
 })
 
 app.get("/todos", async function(req,res){
-    const todos = await todo.find({});
+    const todos = await Todo.find({});
     res.json({
         todos
     })
@@ -49,7 +50,7 @@ app.put("/completed", async function(req,res){
         })
         return;
     }
-    todo.update({
+    Todo.update({
         _id : updatePayload.id
     },{
         completed : true

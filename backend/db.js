@@ -9,8 +9,8 @@ const todoScheama = mongoose.Schema({
     
 })
 
-const todo = mongoose.model('todo',todoScheama);
+const Todo = mongoose.model('todo',todoScheama);
 
 module.exports = {
-    todo
+    Todo
 }
